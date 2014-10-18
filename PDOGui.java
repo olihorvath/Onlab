@@ -47,7 +47,7 @@ ItemListener {
 		//a komponenseket itt rakom ossze
 		//wgPanel.add(nfButton);
 		//wgPanel.add(fsButton);
-		
+		pdoMenu.add(pdoMenuItemNew);
 		pdoMenu.add(pdoMenuItemSave);
 		pdoMenu.add(pdoMenuItemLoad);
 		
