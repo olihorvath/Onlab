@@ -49,7 +49,22 @@ ItemListener {
 		// Buttonok beallitasa
 		nfButton.setPreferredSize(new Dimension (270,200));
 		fsButton.setPreferredSize(new Dimension (270,200));
-		
+		fsButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+            {
+                PDOGui pdogui;
+				try {
+					pdogui = new PDOGui();
+					pdogui.setVisible(true);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+                
+                
+            }
+			
+		});
 		
 		//a komponenseket itt rakom ossze
 		wgPanel.add(nfButton);
@@ -75,8 +90,10 @@ ItemListener {
 			Test.SaveMethod();
 		} else if (com.equals("Betöltés")) {
 			Test.LoadMethod();
+			
+			
 		} 
-	
+		
 	}
 	
 
