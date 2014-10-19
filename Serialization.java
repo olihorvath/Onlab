@@ -16,7 +16,7 @@ import javax.swing.JMenuItem;
 public class Serialization {
 
 	
-	public void SaveMethod() {
+	public void saveMethod() {
 		JFileChooser chooser1 = new JFileChooser(System.getProperty("user.dir"));
 		if (chooser1.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
 			if (chooser1.getSelectedFile() != null) {
@@ -36,7 +36,7 @@ public class Serialization {
 	}
 	
 	
-	public void LoadMethod() {
+	public void loadMethod() {
 		final JFileChooser fc = new JFileChooser(System.getProperty("user.dir"));
 		int temp = fc.showOpenDialog(null);
 
