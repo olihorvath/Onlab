@@ -1,6 +1,7 @@
 
 public class PDOEngine extends Engine {
 	Serialization pdoser = new Serialization ();
+	int a = 0;
 	
 	public PDOEngine (){
 			
