@@ -26,11 +26,7 @@ import java.util.logging.Logger;
 
 public class PDOGui extends JFrame  implements ActionListener,
 ItemListener {
-<<<<<<< HEAD
 	// alkamazásmotor elinditása
-=======
-	// alkamazÃ¡smotor elinditÃ¡sa
->>>>>>> refs/remotes/origin/master
 	PDOEngine pdoengine;
 	JList newlist;
 	JList methodlist;
@@ -48,24 +44,14 @@ ItemListener {
 		JPanel pdoPanel = new JPanel();
 		JMenuBar pdoMenuBar = new JMenuBar();
 		JMenu pdoMenu = new JMenu("Menu");
-<<<<<<< HEAD
 		JMenuItem pdoMenuItemNew = new JMenuItem ("Új");
 		JMenuItem pdoMenuItemSave = new JMenuItem ("Mentés");
 		JMenuItem pdoMenuItemLoad = new JMenuItem ("Betöltés");
-=======
-		JMenuItem pdoMenuItemNew = new JMenuItem ("Ãšj");
-		JMenuItem pdoMenuItemSave = new JMenuItem ("MentÃ©s");
-		JMenuItem pdoMenuItemLoad = new JMenuItem ("BetÃ¶ltÃ©s");
->>>>>>> refs/remotes/origin/master
 		pdoMenuItemNew.addActionListener(this);
 		pdoMenuItemSave.addActionListener(this);
 		pdoMenuItemLoad.addActionListener(this);
 		
-<<<<<<< HEAD
 		ImageIcon dblogo = new ImageIcon("logo.png");
-=======
-		ImageIcon dblogo = new ImageIcon("logo.png");
->>>>>>> refs/remotes/origin/master
 		pdoMenu.add(pdoMenuItemNew);
 		pdoMenu.add(pdoMenuItemSave);
 		pdoMenu.add(pdoMenuItemLoad);
@@ -89,35 +75,21 @@ ItemListener {
 
 	
 	
-<<<<<<< HEAD
 	// itt kezelõdik le a menüpontokra való kattintás eseménye
-=======
-	// itt kezelÅ‘dik le a menÃ¼pontokra valÃ³ kattintÃ¡s esemÃ©nye
->>>>>>> refs/remotes/origin/master
 	public void actionPerformed(ActionEvent arg0) {
 		String com = ((JMenuItem) arg0.getSource()).getText();
 		
-<<<<<<< HEAD
 		if (com.equals("Új")) {
 			newGui();
 			
 		} else if (com.equals("Mentés")) {
 			pdoengine.saveMethod();
 		} else if (com.equals("Betöltés")) {
-=======
-		if (com.equals("Ãšj")) {
-			newGui();
-			
-		} else if (com.equals("MentÃ©s")) {
-			pdoengine.saveMethod();
-		} else if (com.equals("BetÃ¶ltÃ©s")) {
->>>>>>> refs/remotes/origin/master
 			pdoengine.loadMethod();
 		} 
 	
 	}
 	
-<<<<<<< HEAD
 	// új feladat ablakát itt hozom létre
 	
 	public void newGui (){
@@ -152,42 +124,6 @@ ItemListener {
         
         JTextPane instrtext = new JTextPane ();
         instrtext.setText("Add meg a választott témakört, feladatot");
-=======
-	// Ãºj feladat ablakÃ¡t itt hozom lÃ©tre
-	
-	public void newGui (){
-		// Ãºj frame
-		JFrame newgui = new JFrame ("Ãšj feladat");
-		//visszatÃ©rÃ©si Ã©rtÃ©khez kell
-		String [] ret_temp = {"1","1"};
-		
-		// Ãºj ablak mÃ©rete
-		newgui.setBounds(200, 100, 290, 260);
-		
-		// Ãºj listamodell feltÃ¶ltve az elemekkel
-		DefaultListModel listmodell = new DefaultListModel();
-        listmodell.addElement("Heap");
-        listmodell.addElement("Hash");
-        listmodell.addElement("Ritka index szervezÃ©s");
-        listmodell.addElement("TÃ¶bbszintÅ± indexek");
-        listmodell.addElement("B* fÃ¡k");
-        newlist = new JList(listmodell);
-        newlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        newlist.setSelectedIndex(0);
-        JScrollPane listScrollPane = new JScrollPane(newlist);
-        
-        DefaultListModel metmodel = new DefaultListModel();
-        metmodel.addElement("VÃ©letlenszerÅ± feladat");
-        metmodel.addElement("Ã–sszes feladat");
-        methodlist = new JList (metmodel);
-        
-        methodlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        methodlist.setSelectedIndex(0);
-        JScrollPane methodlistScrollPane = new JScrollPane(methodlist);
-        
-        JTextPane instrtext = new JTextPane ();
-        instrtext.setText("Add meg a vÃ¡lasztott tÃ©makÃ¶rt, feladatot");
->>>>>>> refs/remotes/origin/master
         instrtext.enable(false);
         
         
