@@ -34,7 +34,7 @@ ItemListener {
 
 	private void initialize() throws IOException {
 		//felveszem a WelcomeGui reszeit
-		
+		setTitle("Adatbázis feladat gyakorlóprogram");
 		JPanel wgPanel = new JPanel();
 		JMenuBar wgMenuBar = new JMenuBar();
 		JMenu wgMenu = new JMenu("Menu");

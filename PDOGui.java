@@ -28,11 +28,11 @@ public class PDOGui extends JFrame  implements ActionListener,
 ItemListener {
 	// alkamazásmotor elinditása
 	PDOEngine pdoengine;
-	JList newlist;
-	JList methodlist;
+	PDONewGui newgui;
 	public PDOGui() throws IOException {
 		initialize();
 		pdoengine = new PDOEngine();
+		newgui = new PDONewGui(pdoengine);
 		
 	}
 	
@@ -40,7 +40,7 @@ ItemListener {
 	
 	private void initialize() throws IOException {
 		//felveszem a WelcomeGui reszeit
-		
+		setTitle("Fizikai adatszervezés");
 		JPanel pdoPanel = new JPanel();
 		JMenuBar pdoMenuBar = new JMenuBar();
 		JMenu pdoMenu = new JMenu("Menu");
@@ -80,7 +80,7 @@ ItemListener {
 		String com = ((JMenuItem) arg0.getSource()).getText();
 		
 		if (com.equals("Új")) {
-			newGui();
+			newgui.newGui();
 			
 		} else if (com.equals("Mentés")) {
 			pdoengine.saveMethod();
@@ -92,76 +92,7 @@ ItemListener {
 	
 	// új feladat ablakát itt hozom létre
 	
-	public void newGui (){
-		// új frame
-		JFrame newgui = new JFrame ("Új feladat");
-		//visszatérési értékhez kell
-		String [] ret_temp = {"1","1"};
-		
-		// új ablak mérete
-		newgui.setBounds(200, 100, 290, 260);
-		
-		// új listamodell feltöltve az elemekkel
-		DefaultListModel listmodell = new DefaultListModel();
-        listmodell.addElement("Heap");
-        listmodell.addElement("Hash");
-        listmodell.addElement("Ritka index szervezés");
-        listmodell.addElement("Többszintû indexek");
-        listmodell.addElement("B* fák");
-        newlist = new JList(listmodell);
-        newlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        newlist.setSelectedIndex(0);
-        JScrollPane listScrollPane = new JScrollPane(newlist);
-        
-        DefaultListModel metmodel = new DefaultListModel();
-        metmodel.addElement("Véletlenszerû feladat");
-        metmodel.addElement("Összes feladat");
-        methodlist = new JList (metmodel);
-        
-        methodlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        methodlist.setSelectedIndex(0);
-        JScrollPane methodlistScrollPane = new JScrollPane(methodlist);
-        
-        JTextPane instrtext = new JTextPane ();
-        instrtext.setText("Add meg a választott témakört, feladatot");
-        instrtext.enable(false);
-        
-        
-        JPanel selecttypepanel = new JPanel();
-        //JPanel methodselecttypepanel = new JPanel();
-        JPanel okbuttonpanel = new JPanel();
-        
-        JButton okbutton = new JButton ("OK");
-		JButton randombutton = new JButton ("Random");
-		//okbutton actionlistener
-        okbutton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-            {
-				String temp_2 = (String) newlist.getSelectedValue();
-				System.out.println (temp_2);
-            }	
-		});
-        //randombutton actionlistener
-        randombutton.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent e)
-            {
-				System.out.println ("Random");
-            }
-		});
-        
-		selecttypepanel.add(listScrollPane);
-		selecttypepanel.add(methodlistScrollPane);
-		okbuttonpanel.add(okbutton);
-		okbuttonpanel.add(randombutton);
-		newgui.getContentPane().add(instrtext, BorderLayout.NORTH);
-		newgui.getContentPane().add(selecttypepanel, BorderLayout.CENTER);
-		//newgui.getContentPane().add(methodselecttypepanel, BorderLayout.EAST);
-		newgui.getContentPane().add(okbuttonpanel, BorderLayout.SOUTH);
-		//setsetting = false;
-		newgui.setVisible(true);
-		
-		pdoengine.newMethod(ret_temp);
-	} 
+	
 	
 	
 }
