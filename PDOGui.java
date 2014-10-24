@@ -32,7 +32,7 @@ ItemListener {
 	public PDOGui() throws IOException {
 		initialize();
 		pdoengine = new PDOEngine();
-		newgui = new PDONewGui(pdoengine);
+		//newgui = new PDONewGui(pdoengine);
 		
 	}
 	
@@ -80,6 +80,12 @@ ItemListener {
 		String com = ((JMenuItem) arg0.getSource()).getText();
 		
 		if (com.equals("Új")) {
+			try {
+				newgui = new PDONewGui(pdoengine);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			newgui.newGui();
 			
 		} else if (com.equals("Mentés")) {

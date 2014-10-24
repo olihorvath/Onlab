@@ -73,7 +73,7 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 
 		JLabel instrtext = new JLabel();
 		instrtext.setText("Add meg a választott témakört, feladatot");
-		instrtext.enable(false);
+		//instrtext.enable(false);
 		//JTextPane instrtext = new JTextPane();
 		//instrtext.setText("Add meg a választott témakört, feladatot");
 		//instrtext.enable(false);
@@ -132,7 +132,10 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 			setVisible(false);
 
 		} else if (com.equals("Random")) {
-
+			ret_temp[0] = "Random";
+			ret_temp[1] = "Random";
+			ret_temp[2] = "Random";
+			myengine.newMethod(ret_temp);
 			System.out.println("Random");
 			setVisible(false);
 		}
