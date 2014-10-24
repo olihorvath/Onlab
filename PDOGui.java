@@ -10,6 +10,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -17,9 +18,11 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
 
 import java.util.logging.Logger;
 
@@ -29,9 +32,17 @@ ItemListener {
 	// alkamazásmotor elinditása
 	PDOEngine pdoengine;
 	PDONewGui newgui;
+	JTable inputtable;
+	static int frameweight = 800; // ablak szélessége
+	static int frameheight = 600; // ablak magassága
+	static int initx = 100;  
+	static int inity = 75;
+	static int inputweight = 600; // input labelek szélessége
+	static int inputheight = 10; // input labelek magassága
+	
 	public PDOGui() throws IOException {
 		initialize();
-		pdoengine = new PDOEngine();
+		pdoengine = new PDOEngine(this);
 		//newgui = new PDONewGui(pdoengine);
 		
 	}
@@ -59,7 +70,7 @@ ItemListener {
 		setJMenuBar(pdoMenuBar);
 	
 		getContentPane().add(pdoPanel, BorderLayout.CENTER);
-		setBounds(100, 75, 800, 600);
+		setBounds(initx, inity, frameweight, frameheight);
 		
 		
 	}
@@ -96,8 +107,47 @@ ItemListener {
 	
 	}
 	
-	// új feladat ablakát itt hozom létre
-	
+	// 
+	public void inputTable (float blocksize, float recsize, float recnum,float key, 
+			float pointer,float bucket,float blockop,float freememo ){
+		 
+		
+		JPanel inputpanel = new JPanel ();
+		JLabel inputlabel = new JLabel("Inputok:");
+		JLabel blocksizelabel = new JLabel ("Blokk méret: " + (int) blocksize+" bájt");
+		JLabel recordsizelabel = new JLabel ("Rekord méret: " +(int) recsize+" bájt");
+		JLabel recordnumberlabel = new JLabel ("Rekordok száma: " + (int) recnum+" darab");
+		JLabel keylabel = new JLabel ("Kulcs mérete: " + (int)key +" bájt");
+		JLabel pointerlabel = new JLabel ("Pointer mérete: " + (int) pointer +" bit");
+		JLabel bucketlabel = new JLabel ("Vödör mérete: " + (int) bucket +" bájt");
+		JLabel blockoplabel = new JLabel ("Blokkmûvelet ideje: " + (int) blockop +" ms");
+		JLabel freememolabel = new JLabel ("Szabad memóriaterület: " + (int) freememo + " bájt");
+		inputlabel.setSize (inputweight, inputheight);
+		blocksizelabel.setSize (inputweight, inputheight);
+		recordsizelabel.setSize (inputweight, inputheight);
+		recordnumberlabel.setSize (inputweight, inputheight);
+		keylabel.setSize (inputweight, inputheight);
+		pointerlabel.setSize (inputweight, inputheight);
+		bucketlabel.setSize (inputweight, inputheight);
+		blockoplabel.setSize (inputweight, inputheight);
+		freememolabel.setSize (inputweight, inputheight);
+		
+		
+		inputpanel.add(inputlabel);
+		inputpanel.add(blocksizelabel);
+		inputpanel.add(recordsizelabel);
+		inputpanel.add(recordnumberlabel);
+		inputpanel.add(keylabel);
+		inputpanel.add(pointerlabel);
+		inputpanel.add(bucketlabel);
+		inputpanel.add(blockoplabel);
+		inputpanel.add(freememolabel);
+		
+		getContentPane().add(inputpanel, BorderLayout.NORTH);
+		
+		setVisible(true);
+		
+	}
 	
 	
 	

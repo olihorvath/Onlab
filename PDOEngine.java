@@ -4,10 +4,12 @@ import java.util.Random;
 public class PDOEngine extends Engine {
 	Serialization pdoser;
 	PDOData pdodata;
+	PDOGui pdogui;
 	
-	public PDOEngine (){
+	public PDOEngine (PDOGui gui){
 		pdodata = new PDOData ();
-		pdoser = new Serialization ();
+		pdoser = new Serialization();
+		pdogui = gui;
 	}
 	
 	public void generateData (String[] feladat){
@@ -47,7 +49,16 @@ public class PDOEngine extends Engine {
 		System.out.println(randomfreememoryfloat);
 		pdodata.setFreeMemory (randomfreememoryfloat);
 		
-		
+		pdogui.inputTable(
+				pdodata.getBlockSize(), 
+				pdodata.getRecordSize(), 
+				pdodata.getRecordNumber(),
+				pdodata.getKeySize(), 
+				pdodata.getPointerSize(), 
+				pdodata.getBucketSize(),
+				pdodata.getBlockOperationTime(), 
+				pdodata.getFreeMemory()
+				);
 		
 		
 		
