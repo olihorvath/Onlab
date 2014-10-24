@@ -23,6 +23,7 @@ import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 import java.util.logging.Logger;
 
@@ -55,18 +56,31 @@ ItemListener {
 		JPanel pdoPanel = new JPanel();
 		JMenuBar pdoMenuBar = new JMenuBar();
 		JMenu pdoMenu = new JMenu("Menu");
+		JMenu pdoSettings = new JMenu("Beállítások");
 		JMenuItem pdoMenuItemNew = new JMenuItem ("Új");
 		JMenuItem pdoMenuItemSave = new JMenuItem ("Mentés");
 		JMenuItem pdoMenuItemLoad = new JMenuItem ("Betöltés");
+		JMenu pdoSettingsItemMode = new JMenu ("Üzemmód");
+		JMenuItem pdoSimpleMode = new JMenuItem ("Egyszerû");
+		JMenuItem pdoFullMode = new JMenuItem ("Részletes");
+		
 		pdoMenuItemNew.addActionListener(this);
 		pdoMenuItemSave.addActionListener(this);
 		pdoMenuItemLoad.addActionListener(this);
+		
+		pdoSimpleMode.addActionListener(this);
+		pdoFullMode.addActionListener(this);
 		
 		ImageIcon dblogo = new ImageIcon("logo.png");
 		pdoMenu.add(pdoMenuItemNew);
 		pdoMenu.add(pdoMenuItemSave);
 		pdoMenu.add(pdoMenuItemLoad);
+		pdoSettingsItemMode.add(pdoSimpleMode);
+		pdoSettingsItemMode.add(pdoFullMode);
+		pdoSettings.add(pdoSettingsItemMode);
+		
 		pdoMenuBar.add(pdoMenu);
+		pdoMenuBar.add(pdoSettings);
 		setJMenuBar(pdoMenuBar);
 	
 		getContentPane().add(pdoPanel, BorderLayout.CENTER);
@@ -113,41 +127,53 @@ ItemListener {
 		 
 		
 		JPanel inputpanel = new JPanel ();
-		JLabel inputlabel = new JLabel("Inputok:");
-		JLabel blocksizelabel = new JLabel ("Blokk méret: " + (int) blocksize+" bájt");
-		JLabel recordsizelabel = new JLabel ("Rekord méret: " +(int) recsize+" bájt");
-		JLabel recordnumberlabel = new JLabel ("Rekordok száma: " + (int) recnum+" darab");
-		JLabel keylabel = new JLabel ("Kulcs mérete: " + (int)key +" bájt");
-		JLabel pointerlabel = new JLabel ("Pointer mérete: " + (int) pointer +" bit");
-		JLabel bucketlabel = new JLabel ("Vödör mérete: " + (int) bucket +" bájt");
-		JLabel blockoplabel = new JLabel ("Blokkmûvelet ideje: " + (int) blockop +" ms");
-		JLabel freememolabel = new JLabel ("Szabad memóriaterület: " + (int) freememo + " bájt");
-		inputlabel.setSize (inputweight, inputheight);
-		blocksizelabel.setSize (inputweight, inputheight);
-		recordsizelabel.setSize (inputweight, inputheight);
-		recordnumberlabel.setSize (inputweight, inputheight);
-		keylabel.setSize (inputweight, inputheight);
-		pointerlabel.setSize (inputweight, inputheight);
-		bucketlabel.setSize (inputweight, inputheight);
-		blockoplabel.setSize (inputweight, inputheight);
-		freememolabel.setSize (inputweight, inputheight);
 		
 		
-		inputpanel.add(inputlabel);
-		inputpanel.add(blocksizelabel);
-		inputpanel.add(recordsizelabel);
-		inputpanel.add(recordnumberlabel);
-		inputpanel.add(keylabel);
-		inputpanel.add(pointerlabel);
-		inputpanel.add(bucketlabel);
-		inputpanel.add(blockoplabel);
-		inputpanel.add(freememolabel);
+		String[] columnNames = {"Név",
+                "Érték",
+                "Mértékegység"
+                };
+
+		Object[][] data = {
+				{"Blokk méret", (int) blocksize, "bájt"},
+				{"Rekord méret", (int) recsize, "bájt"},
+				{"Rekordok száma", (int) recnum, "darab"},
+				{"Kulcs mérete", (int) key, "bájt"},
+				{"Pointer mérete", (int) pointer, "bit"},
+				{"Vödör mérete", (int) bucket, "bájt"},
+				{"Blokkmûvelet ideje", (int) blockop, "ms"},
+				{"Szabad memóriaterület", (int) freememo, "bájt"},
+				
 		
-		getContentPane().add(inputpanel, BorderLayout.NORTH);
+		};
+		
+		JLabel inputlabel = new JLabel ("Inputok:");
+		JTable inputtable = new JTable(data, columnNames);
+		//inputtable.setSize(new Dimension(300, 300));
+		//inputtable.setPreferredScrollableViewportSize(new Dimension(300, 70));
+		//JScrollPane scrollPane = new JScrollPane(inputtable);
+		//TableColumn column = inputtable.getColumnModel().getColumn(0);
+		//column.setPreferredWidth(150);
+		
+		//inputpanel.setSize(new Dimension(300, 300));
+		inputtable.enable(false);
+		inputpanel.setLayout(new BorderLayout());
+		inputpanel.add(inputlabel, BorderLayout.NORTH);
+		inputpanel.add(inputtable.getTableHeader(), BorderLayout.CENTER);
+		inputpanel.add(inputtable, BorderLayout.SOUTH);
+		//inputtable.setAutoResizeMode(AUTO_RESIZE_OFF);
+		//inputpanel.setPreferredSize(new Dimension(300, 200));
+		
+		//inputpanel.add(inputtable);
+		
+		//getContentPane().
+		add(inputpanel, BorderLayout.NORTH);
 		
 		setVisible(true);
 		
 	}
+	
+	
 	
 	
 	
