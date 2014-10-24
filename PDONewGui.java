@@ -128,14 +128,14 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 			System.out.println(ret_temp[0]);
 			System.out.println(ret_temp[1]);
 			System.out.println(ret_temp[2]);
-			myengine.newMethod(ret_temp);
+			myengine.generateData(ret_temp);
 			setVisible(false);
 
 		} else if (com.equals("Random")) {
 			ret_temp[0] = "Random";
 			ret_temp[1] = "Random";
 			ret_temp[2] = "Random";
-			myengine.newMethod(ret_temp);
+			myengine.generateData(ret_temp);
 			System.out.println("Random");
 			setVisible(false);
 		}
