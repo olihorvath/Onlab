@@ -134,9 +134,9 @@ ItemListener {
 		} else if (com.equals("Betöltés")) {
 			pdoengine.loadMethod();
 		} else if (com.equals("Egyszerû")) {
-			//pdoengine.loadMethod();
+			pdoengine.simpleMode();
 		} else if (com.equals("Részletes")) {
-			//pdoengine.loadMethod();
+			pdoengine.fullMode();
 		} 
 	
 	}
