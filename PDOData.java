@@ -1,10 +1,10 @@
 
 public class PDOData extends Data {
 
-	private String [] jobcommand;
-	private String theme;
-	private String function;
-	private String subtheme;
+	private int [] jobcommand;
+	private int theme;
+	private int function;
+	private int subtheme;
 	//inputok
 	private float blocksize;
 	private float recordsize;
@@ -18,7 +18,7 @@ public class PDOData extends Data {
 	private boolean fullmode = false; 
 	private int functionnumber; // kiválasztott feladat száma
 	
-	private String [] feladatok = {
+	private String [] functions = {
 			"1.1 Számold ki az átlagos keresési idõt!", 
 			"1.2 Számold ki a maximális keresési idõt!",
 			"1.3 Számold ki az x. rekord megtalálásának helyét!",  // TODO 
@@ -32,7 +32,7 @@ public class PDOData extends Data {
 			
 			"3.1 Számold ki a teljes struktúra eltárolásához szükséges blokkok számát!",
 			"3.2 x. indexállomány blokkban van az általunk keresett rekord mutatója, mennyi idõ alatt érjük el ezt a blokkot? ", // TODO 
-			"3.3 Számold ki hogy mennyi ideig tarthat legfeljebb egy rekord kiolvasása?",
+			"3.3 Számold ki hogy mennyi ideig tarthat legfeljebb egy rekord kiolvasása!",
 			
 			"4.1 Sûrû indexelt szervezésre épülõ egyszintes ritka index segítségével szeretnénk állományt tárolni. Adj értelmes alsó becslést a szükséges blokkok számára.", 
 			"4.2 Sûrû indexelt szervezésre épülõ egyszintes ritka index segítségével szeretnénk állományt tárolni. Adj értelmes alsó becslést a szükséges tárterületre.",
@@ -53,7 +53,7 @@ public class PDOData extends Data {
 	
 	public PDOData(){}
 	
-	public void setJobCommand (String [] job){
+	public void setJobCommand (int [] job){
 		jobcommand = job;
 		theme = job[0];
 		function =job[1];
@@ -61,19 +61,19 @@ public class PDOData extends Data {
 		
 	}
 	
-	public String[] getJobCommand (){
+	public int[] getJobCommand (){
 		return jobcommand;
 	}
 	
-	public String getTheme (){
+	public int getTheme (){
 		return theme;
 	}
 	
-	public String getFunction (){
+	public int getFunction (){
 		return function;
 	}
 	
-	public String getSubTheme (){
+	public int getSubTheme (){
 		return subtheme;
 	}
 	
@@ -158,5 +158,17 @@ public class PDOData extends Data {
 	public boolean getFullMode (){
 		if (simplemode == false && fullmode == true) return true;
 		else return false;
+	}
+	
+	String getFunction (int index){	
+	return functions[index];
+	}
+	
+	public void setFunctionNumber (int fre){
+		functionnumber = fre;
+	}
+	
+	public int getFunctionNumber (){
+		return functionnumber;
 	}
 }

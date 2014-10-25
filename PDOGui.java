@@ -34,6 +34,7 @@ ItemListener {
 	PDOEngine pdoengine;
 	PDONewGui newgui;
 	JTable inputtable;
+	JPanel functionpanel;
 	static int frameweight = 800; // ablak szélessége
 	static int frameheight = 600; // ablak magassága
 	static int initx = 100;  
@@ -85,8 +86,9 @@ ItemListener {
 	
 		getContentPane().add(pdoPanel, BorderLayout.CENTER);
 		setBounds(initx, inity, frameweight, frameheight);
-		
-		
+		functionpanel = new JPanel();
+		functionpanel.setLayout(new BorderLayout());
+		add(functionpanel, BorderLayout.CENTER);
 	}
 	
 	
@@ -172,12 +174,16 @@ ItemListener {
 		
 		//getContentPane().
 		add(inputpanel, BorderLayout.NORTH);
-		
+		pdoengine.newFunction();	
 		setVisible(true);
 		
 	}
 	
-	
+	public void onFunction(String function){
+		JLabel functionlabel = new JLabel (function);
+		functionpanel.add(functionlabel, BorderLayout.NORTH);
+		
+	}
 	
 	
 	

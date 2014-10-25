@@ -26,7 +26,7 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 	JList newlist;
 	JList methodlist;
 	JList detailList;
-	String[] ret_temp = { "1", "1", "1" };
+	int[] ret_temp = { 1, 1, 1 };
 	JButton okbutton;
 	JButton randombutton;
 	DefaultListModel detmodel;
@@ -63,7 +63,7 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 		DefaultListModel metmodel = new DefaultListModel();
 		metmodel.addElement("Kiválasztott feladat");
 		metmodel.addElement("Véletlenszerû feladat");
-		metmodel.addElement("Összes feladat");
+		//metmodel.addElement("Összes feladat");
 		methodlist = new JList(metmodel);
 
 		methodlist.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -83,7 +83,7 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 		JPanel okbuttonpanel = new JPanel();
 
 		okbutton = new JButton("OK");
-		randombutton = new JButton("Random");
+		randombutton = new JButton("Random feladat");
 		okbutton.addActionListener(this);
 		randombutton.addActionListener(this);
 
@@ -118,24 +118,27 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 		String com = ((JButton) arg0.getSource()).getText();
 
 		if (com.equals("OK")) {
-			String temp_1 = (String) newlist.getSelectedValue();
-			String temp_2 = (String) methodlist.getSelectedValue();
-			String temp_3 = (String) detailList.getSelectedValue();
+			int temp_1 = newlist.getSelectedIndex();
+			int temp_2 = methodlist.getSelectedIndex();
+			int temp_3 = detailList.getSelectedIndex();
+
+
 			ret_temp[0] = temp_1;
 			ret_temp[1] = temp_2;
 			ret_temp[2] = temp_3;
 
-			System.out.println(ret_temp[0]);
-			System.out.println(ret_temp[1]);
-			System.out.println(ret_temp[2]);
+			//System.out.println(ret_temp[0]);
+			//System.out.println(ret_temp[1]);
+			//System.out.println(ret_temp[2]);
 			myengine.generateData(ret_temp);
 			setVisible(false);
 
-		} else if (com.equals("Random")) {
-			ret_temp[0] = "Random";
-			ret_temp[1] = "Random";
-			ret_temp[2] = "Random";
+		} else if (com.equals("Random feladat")) {
+			ret_temp[0] = -1;
+			ret_temp[1] = -1;
+			ret_temp[2] = -1;
 			myengine.generateData(ret_temp);
+			
 			System.out.println("Random");
 			setVisible(false);
 		}
