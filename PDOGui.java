@@ -117,6 +117,10 @@ ItemListener {
 			pdoengine.saveMethod();
 		} else if (com.equals("Betöltés")) {
 			pdoengine.loadMethod();
+		} else if (com.equals("Egyszerû")) {
+			//pdoengine.loadMethod();
+		} else if (com.equals("Részletes")) {
+			//pdoengine.loadMethod();
 		} 
 	
 	}

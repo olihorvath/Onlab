@@ -61,9 +61,18 @@ public class PDOEngine extends Engine {
 				);
 		
 		
-		
-		
 	}
+	
+public void setSimpleMode (){
+		
+		
+	}	
+
+public void setFullMode (){
+	
+	
+}
+
 	//mentés metódus
 	public void saveMethod(){
 	pdoser.saveMethod();	

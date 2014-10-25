@@ -14,6 +14,42 @@ public class PDOData extends Data {
 	private float bucketsize;
 	private float blockoperationtime;
 	private float freememory;
+	private boolean simplemode = true; //eloszor simplemode
+	private boolean fullmode = false; 
+	private int functionnumber; // kiválasztott feladat száma
+	
+	private String [] feladatok = {
+			"1.1 Számold ki az átlagos keresési idõt!", 
+			"1.2 Számold ki a maximális keresési idõt!",
+			"1.3 Számold ki az x. rekord megtalálásának helyét!",  // TODO 
+			"1.4 Számold ki a x. rekord törlésének helyét!", // TODO
+			
+			"2.1 Számold ki a vödörkatalógus méretét!", 
+			"2.2 Belefér-e az operatív tárba a teljes vödörkatalógus?",
+			"2.3 Számold ki a rekordok átlagos elérésének az idejét!", 
+			"2.4 Számold ki a rekordok maximális elérésének az idejét!",
+			"2.5 Maximum x ms alatt elérjük-e bármelyik rekordot? ", // TODO 
+			
+			"3.1 Számold ki a teljes struktúra eltárolásához szükséges blokkok számát!",
+			"3.2 x. indexállomány blokkban van az általunk keresett rekord mutatója, mennyi idõ alatt érjük el ezt a blokkot? ", // TODO 
+			"3.3 Számold ki hogy mennyi ideig tarthat legfeljebb egy rekord kiolvasása?",
+			
+			"4.1 Sûrû indexelt szervezésre épülõ egyszintes ritka index segítségével szeretnénk állományt tárolni. Adj értelmes alsó becslést a szükséges blokkok számára.", 
+			"4.2 Sûrû indexelt szervezésre épülõ egyszintes ritka index segítségével szeretnénk állományt tárolni. Adj értelmes alsó becslést a szükséges tárterületre.",
+			
+			"5.1 Egy x szintes B* fában átlagosan hány blokkmûvelettel lehet elérni egy keresett elemet?",  //TODO
+			"5.2 Egy x szintes B* fában legfeljebb y idõ alatt el tudom érni bármelyik keresett elemet?",  //TODO
+			"5.3 A fenti paraméterekkel szeretnénk B* szervezéssel tárolni az állományunkat. Add meg a fa blocking factorát!", 
+			"5.4 A fenti paraméterekkel szeretnénk B* szervezéssel tárolni az állományunkat. Add meg a fa szintjeinek számát!"
+		
+			
+			
+			
+			
+	};
+	
+	
+	
 	
 	public PDOData(){}
 	
@@ -104,6 +140,23 @@ public class PDOData extends Data {
 		return freememory;
 	}
 	
+	public void setSimpleMode (){
+		simplemode = true;
+		fullmode = false;
+	}
 	
+	public boolean getSimpleMode (){
+		if (simplemode == true && fullmode == false) return true;
+		else return false;
+	}
 	
+	public void setFullMode (){
+		simplemode = true;
+		fullmode = false;
+	}
+	
+	public boolean getFullMode (){
+		if (simplemode == false && fullmode == true) return true;
+		else return false;
+	}
 }

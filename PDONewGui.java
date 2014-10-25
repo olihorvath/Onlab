@@ -169,7 +169,7 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 			detmodel.addElement("2.2 Katalógus operatív tárba");
 			detmodel.addElement("2.3 Rekord elérésének átlagos ideje");
 			detmodel.addElement("2.4 Rekord elérésének maximális ideje");
-			detmodel.addElement("2.4 Rekord elérése bizonyos idõ alatt");
+			detmodel.addElement("2.5 Rekord elérése bizonyos idõ alatt");
 			toNewGui(detmodel);
 			break;
 
@@ -192,7 +192,6 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 			detmodel.addElement("5.2 Állomány tárolásához szükséges idõ");
 			detmodel.addElement("5.3 B* fa blocking factorának kiszámolása");
 			detmodel.addElement("5.4 B* fa blocking szintjeinek számának kiszámolása");
-			detmodel.addElement("5.4 Rekord elérése bizonyos idõ alatt");
 			toNewGui(detmodel);
 			break;
 
