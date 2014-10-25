@@ -135,4 +135,22 @@ public class PDOEngine extends Engine {
 		pdogui.onFunction(thefunction);
 		pdodata.setFunctionNumber(randomfunction);
 	}
+	
+	public void simpleResultsCheck(String result){
+		
+	
+	}
+	
+	
+	//egyszerû mód
+	public void simpleMode (){
+		pdogui.simpleSolution ();
+	}	
+	
+	//részletes mód
+	public void fullMode (){
+		pdogui.fullSolutionInit ("proba");
+		//fullSolutionAddRow ("alma","béta");
+	}
+
 }

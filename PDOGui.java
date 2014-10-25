@@ -19,12 +19,14 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 
@@ -41,6 +43,18 @@ ItemListener {
 	static int inity = 75;
 	static int inputweight = 600; // input labelek szélessége
 	static int inputheight = 10; // input labelek magassága
+	//csak a végeredményhez
+	JButton resultbutton;
+	JTextField resultfield;
+	JPanel simpleresults;
+	// részletes eredményekhez
+	JButton fullresultbutton;
+	JTextField fullresultfield;
+	JPanel fullresults;
+	JPanel fullresultsdetails;
+	JTable resultstable;
+	DefaultTableModel resultsmodel;
+	
 	
 	public PDOGui() throws IOException {
 		initialize();
@@ -174,17 +188,104 @@ ItemListener {
 		
 		//getContentPane().
 		add(inputpanel, BorderLayout.NORTH);
-		pdoengine.newFunction();	
+		pdoengine.newFunction();
+		
+		
 		setVisible(true);
 		
 	}
 	
 	public void onFunction(String function){
 		JLabel functionlabel = new JLabel (function);
+		functionpanel.removeAll();
 		functionpanel.add(functionlabel, BorderLayout.NORTH);
 		
 	}
 	
+	public void simpleSolution (){
+		
+		simpleresults = new JPanel();
+		//simpleresults.setLayout(new BorderLayout());
+		JLabel inresult = new JLabel ("Add meg az eredményt: ");
+		resultfield = new JTextField (20);
+		
+		resultbutton = new JButton ("Ellenõriz");
+		
+		resultbutton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+            {
+				if (!resultfield.getText().equals("")){ // ha nem üres a mezõ, akkor check
+               pdoengine.simpleResultsCheck(resultfield.getText()); 
+            
+				}
+            }
+			
+		});
+		
+		
+		simpleresults.add(inresult);
+		simpleresults.add(resultfield);
+		simpleresults.add(resultbutton);
+		functionpanel.add(simpleresults, BorderLayout.CENTER);
+		setVisible(true);
+	
+	}
+	
+	public void fullSolutionInit (String subfunc){
+		
+		fullresults = new JPanel();
+		fullresultfield = new JTextField (20);
+		fullresultbutton = new JButton ("Tovább");
+		JLabel fullresultlabel = new JLabel (subfunc);
+		fullresults.removeAll();
+		fullresults.add(fullresultlabel);
+		fullresultbutton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+            {
+				
+            }
+			
+		});
+		
+		
+		fullresults.add(fullresultfield);
+		fullresults.add(fullresultbutton);
+		functionpanel.add(fullresults, BorderLayout.CENTER);
+		
+		resultsmodel = new DefaultTableModel ();
+		resultstable = new JTable(resultsmodel);
+		
+		fullresultsdetails = new JPanel();
+		fullresultsdetails.setLayout(new BorderLayout());
+		
+		fullresultsdetails.add(resultstable.getTableHeader(), BorderLayout.NORTH);
+		fullresultsdetails.add(resultstable, BorderLayout.CENTER);
+		functionpanel.add(fullresultsdetails, BorderLayout.SOUTH);
+		
+		resultsmodel.addColumn("Lépés"); 
+		resultsmodel.addColumn("Eredmény");
+		resultsmodel.addRow(new Object[]{"v1", "v2"});
+		
+		setVisible(true);
+		
+	}
+	
+	public void fullSolutionnext (String subfunc){
+		functionpanel.remove(fullresults);
+		JLabel fullresultlabel = new JLabel (subfunc);
+		fullresults.removeAll();
+		fullresults.add(fullresultlabel);
+		fullresults.add(fullresultfield);
+		fullresults.add(fullresultbutton);
+		//
+		functionpanel.add(fullresults, BorderLayout.CENTER);
+		
+	}
+	
+	
+	public void fullSolutionAddRow (String comment, String results){
+		resultsmodel.addRow(new Object[]{comment, results});
+	}
 	
 	
 }
