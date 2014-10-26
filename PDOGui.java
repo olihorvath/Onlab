@@ -169,24 +169,13 @@ ItemListener {
 		
 		JLabel inputlabel = new JLabel ("Inputok:");
 		JTable inputtable = new JTable(data, columnNames);
-		//inputtable.setSize(new Dimension(300, 300));
-		//inputtable.setPreferredScrollableViewportSize(new Dimension(300, 70));
-		//JScrollPane scrollPane = new JScrollPane(inputtable);
-		//TableColumn column = inputtable.getColumnModel().getColumn(0);
-		//column.setPreferredWidth(150);
 		
-		//inputpanel.setSize(new Dimension(300, 300));
 		inputtable.enable(false);
 		inputpanel.setLayout(new BorderLayout());
 		inputpanel.add(inputlabel, BorderLayout.NORTH);
 		inputpanel.add(inputtable.getTableHeader(), BorderLayout.CENTER);
 		inputpanel.add(inputtable, BorderLayout.SOUTH);
-		//inputtable.setAutoResizeMode(AUTO_RESIZE_OFF);
-		//inputpanel.setPreferredSize(new Dimension(300, 200));
 		
-		//inputpanel.add(inputtable);
-		
-		//getContentPane().
 		add(inputpanel, BorderLayout.NORTH);
 		pdoengine.newFunction();
 		
@@ -203,6 +192,11 @@ ItemListener {
 	}
 	
 	public void simpleSolution (){
+		if (fullresults != null)
+			functionpanel.remove(fullresults);
+		if (simpleresults != null)
+			functionpanel.remove(simpleresults);
+		
 		
 		simpleresults = new JPanel();
 		//simpleresults.setLayout(new BorderLayout());
@@ -233,6 +227,13 @@ ItemListener {
 	
 	public void fullSolutionInit (String subfunc){
 		
+		pdoengine.getFunction();
+		
+		// ha volt már a functionpanelen valami, akkor törölni kell
+		if (fullresults != null)
+			functionpanel.remove(fullresults);
+		if (simpleresults != null)
+			functionpanel.remove(simpleresults);
 		fullresults = new JPanel();
 		fullresultfield = new JTextField (20);
 		fullresultbutton = new JButton ("Tovább");
@@ -242,7 +243,7 @@ ItemListener {
 		fullresultbutton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
             {
-				
+				pdoengine.nextStep();
             }
 			
 		});
@@ -284,6 +285,9 @@ ItemListener {
 	
 	
 	public void fullSolutionAddRow (String comment, String results){
+		int index= resultsmodel.getRowCount()-1;
+		Object lastres = resultsmodel.getValueAt(index,0);
+		if (lastres != (Object) comment)
 		resultsmodel.addRow(new Object[]{comment, results});
 	}
 	

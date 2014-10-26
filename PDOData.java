@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 public class PDOData extends Data {
 
@@ -17,7 +20,8 @@ public class PDOData extends Data {
 	private boolean simplemode = true; //eloszor simplemode
 	private boolean fullmode = false; 
 	private int functionnumber; // kiválasztott feladat száma
-	
+	ArrayList functionsteps;
+	private int subfuncnumber = 1;  //hanyadik lépésnél járunk
 	private String [] functions = {
 			"1.1 Számold ki az átlagos keresési idõt!", 
 			"1.2 Számold ki a maximális keresési idõt!",
@@ -171,4 +175,34 @@ public class PDOData extends Data {
 	public int getFunctionNumber (){
 		return functionnumber;
 	}
+	
+	public void setFunctionSteps (ArrayList steps){
+		functionsteps = steps;
+	}
+	
+	public ArrayList getFunctionSteps (){
+		return functionsteps;
+	}
+	
+	public String[] getNowFunction (){
+		String comment = (String) functionsteps.get(subfuncnumber-1);
+		String funcvalue = (String) functionsteps.get(subfuncnumber);
+		String[] rettemp = {comment, funcvalue};
+		
+		return rettemp;
+	}
+	
+	public String[] getNextFunction (){
+		String[] rettemp = {"end", "end"};
+		
+		if (subfuncnumber < functionsteps.size()-2){
+		String comment = (String) functionsteps.get(++subfuncnumber);
+		String funcvalue = (String) functionsteps.get(++subfuncnumber);
+		rettemp[0] = comment;
+		rettemp[1] = funcvalue;
+		}
+		
+		return rettemp;
+	}
+	
 }

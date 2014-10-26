@@ -1,3 +1,6 @@
+import java.awt.List;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 
 
@@ -5,10 +8,12 @@ public class PDOEngine extends Engine {
 	Serialization pdoser;
 	PDOData pdodata;
 	PDOGui pdogui;
+	PDOLogic pdologic;
 	
 	public PDOEngine (PDOGui gui){
 		pdodata = new PDOData ();
 		pdoser = new Serialization();
+		pdologic = new PDOLogic();
 		pdogui = gui;
 	}
 	
@@ -134,6 +139,7 @@ public class PDOEngine extends Engine {
 		
 		pdogui.onFunction(thefunction);
 		pdodata.setFunctionNumber(randomfunction);
+		
 	}
 	
 	public void simpleResultsCheck(String result){
@@ -149,8 +155,70 @@ public class PDOEngine extends Engine {
 	
 	//részletes mód
 	public void fullMode (){
-		pdogui.fullSolutionInit ("proba");
+		String [] nowfunc = pdodata.getNowFunction();
+		pdogui.fullSolutionInit (nowfunc[0]);
 		//fullSolutionAddRow ("alma","béta");
 	}
-
+	
+	public void getFunction (){
+		ArrayList funcdetails;
+        switch (pdodata.getFunctionNumber()) {
+            case 1:  funcdetails = pdologic.dummyFunction();
+                     break;
+            case 2:  funcdetails = pdologic.dummyFunction();
+                     break;
+            case 3:  funcdetails = pdologic.dummyFunction();
+                     break;
+            case 4:  funcdetails = pdologic.dummyFunction();
+                     break;
+            case 5:  funcdetails = pdologic.dummyFunction();
+                     break;
+            case 6:  funcdetails = pdologic.dummyFunction();
+                     break;
+            case 7:  funcdetails = pdologic.dummyFunction();
+                     break;
+            case 8:  funcdetails = pdologic.dummyFunction();
+                     break;
+            case 9:  funcdetails = pdologic.dummyFunction();
+                     break;
+            case 10: funcdetails = pdologic.dummyFunction();
+                     break;
+            case 11: funcdetails = pdologic.dummyFunction();
+                     break;
+            case 12: funcdetails = pdologic.dummyFunction();
+                     break;
+            case 13: funcdetails = pdologic.dummyFunction();
+            		break;
+            case 14: funcdetails = pdologic.dummyFunction();
+            		break;
+            case 15: funcdetails = pdologic.dummyFunction();
+            		break;
+            case 16: funcdetails = pdologic.dummyFunction();
+            		break;
+            case 17: funcdetails = pdologic.dummyFunction();
+            		break;         
+                
+            default: funcdetails = pdologic.dummyFunction();
+                     break;
+        }
+		
+		pdodata.setFunctionSteps(funcdetails);
+		
+		
+		
+	}
+	
+	public void nextStep(){
+		String [] nowfunc = pdodata.getNowFunction();
+		String [] nextfunc = pdodata.getNextFunction();
+		if (nextfunc[0].equals("end") && nextfunc[1].equals("end")) {
+			pdogui.fullSolutionAddRow(nowfunc[0], nowfunc[1]);
+			pdogui.fullSolutionnext("Vége");
+			return;
+		}
+		
+		pdogui.fullSolutionAddRow(nowfunc[0], nowfunc[1]);
+		pdogui.fullSolutionnext(nextfunc[0]);
+		
+	}
 }
