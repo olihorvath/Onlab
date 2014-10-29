@@ -227,7 +227,7 @@ ItemListener {
 	
 	public void fullSolutionInit (String subfunc){
 		
-		pdoengine.getFunction();
+		//pdoengine.getFunction();
 		
 		// ha volt már a functionpanelen valami, akkor törölni kell
 		if (fullresults != null)
@@ -265,7 +265,7 @@ ItemListener {
 		
 		resultsmodel.addColumn("Lépés"); 
 		resultsmodel.addColumn("Eredmény");
-		resultsmodel.addRow(new Object[]{"v1", "v2"});
+		resultsmodel.addRow(new Object[]{"Dummy", "Dummy"});
 		
 		setVisible(true);
 		
@@ -286,6 +286,7 @@ ItemListener {
 	
 	public void fullSolutionAddRow (String comment, String results){
 		int index= resultsmodel.getRowCount()-1;
+		//System.out.println (index);
 		Object lastres = resultsmodel.getValueAt(index,0);
 		if (lastres != (Object) comment)
 		resultsmodel.addRow(new Object[]{comment, results});

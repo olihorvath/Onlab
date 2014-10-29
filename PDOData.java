@@ -62,6 +62,7 @@ public class PDOData extends Data {
 		theme = job[0];
 		function =job[1];
 		subtheme = job[2];
+		//subfuncnumber = 1;
 		
 	}
 	
@@ -185,9 +186,13 @@ public class PDOData extends Data {
 	}
 	
 	public String[] getNowFunction (){
-		String comment = (String) functionsteps.get(subfuncnumber-1);
-		String funcvalue = (String) functionsteps.get(subfuncnumber);
-		String[] rettemp = {comment, funcvalue};
+		String[] rettemp = {"Nincs funkció", "00"};
+		//if (){
+			String comment = (String) functionsteps.get(subfuncnumber-1);
+			String funcvalue = (String) functionsteps.get(subfuncnumber);
+			rettemp[0] = comment;
+			rettemp[1] = funcvalue;
+		//}  
 		
 		return rettemp;
 	}

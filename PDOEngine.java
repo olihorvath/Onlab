@@ -139,7 +139,9 @@ public class PDOEngine extends Engine {
 		
 		pdogui.onFunction(thefunction);
 		pdodata.setFunctionNumber(randomfunction);
-		
+		//Itt lekérem a lépéseket TODO még át kell tenni
+		//getFunction ();
+		simpleMode();
 	}
 	
 	public void simpleResultsCheck(String result){
@@ -155,6 +157,7 @@ public class PDOEngine extends Engine {
 	
 	//részletes mód
 	public void fullMode (){
+		getFunction();
 		String [] nowfunc = pdodata.getNowFunction();
 		pdogui.fullSolutionInit (nowfunc[0]);
 		//fullSolutionAddRow ("alma","béta");
@@ -203,7 +206,7 @@ public class PDOEngine extends Engine {
         }
 		
 		pdodata.setFunctionSteps(funcdetails);
-		
+		System.out.println (" lépések feltöltve");
 		
 		
 	}

@@ -131,7 +131,7 @@ public class PDONewGui extends JFrame implements ActionListener, ItemListener {
 			//System.out.println(ret_temp[1]);
 			//System.out.println(ret_temp[2]);
 			myengine.generateData(ret_temp);
-			myengine.simpleMode();
+			//
 			setVisible(false);
 
 		} else if (com.equals("Random feladat")) {
