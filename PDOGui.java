@@ -261,8 +261,9 @@ ItemListener {
 		
 		fullresultsdetails.add(resultstable.getTableHeader(), BorderLayout.NORTH);
 		fullresultsdetails.add(resultstable, BorderLayout.CENTER);
+		fullresultsdetails.setPreferredSize(new Dimension( 300, 300) );
 		functionpanel.add(fullresultsdetails, BorderLayout.SOUTH);
-		
+	
 		resultsmodel.addColumn("Lépés"); 
 		resultsmodel.addColumn("Eredmény");
 		resultsmodel.addRow(new Object[]{"Dummy", "Dummy"});

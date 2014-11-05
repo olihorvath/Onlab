@@ -166,6 +166,7 @@ public class PDOData extends Data {
 	}
 	
 	String getFunction (int index){	
+	setFunctionNumber(index);
 	return functions[index];
 	}
 	

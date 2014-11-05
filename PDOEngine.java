@@ -13,7 +13,7 @@ public class PDOEngine extends Engine {
 	public PDOEngine (PDOGui gui){
 		pdodata = new PDOData ();
 		pdoser = new Serialization();
-		pdologic = new PDOLogic();
+		pdologic = new PDOLogic(pdodata);
 		pdogui = gui;
 	}
 	
@@ -97,12 +97,12 @@ public class PDOEngine extends Engine {
 			randomfunction = newrandom.nextInt(18);	
 			thefunction = pdodata.getFunction(randomfunction);
 			
-		} else if (newfunc[1] == 0){ // ha feladaton belül kell random keresni
+		} else if (newfunc[1] == 0){ 
 			if (newfunc[0] == 0){
 				
 				thefunction = pdodata.getFunction(newfunc[2]);
 			} else if (newfunc[0] == 1){
-				
+				//System.out.println(newfunc[2]+4);
 				thefunction = pdodata.getFunction(newfunc[2]+4);
 			} else if (newfunc[0] == 2){
 				
@@ -138,7 +138,7 @@ public class PDOEngine extends Engine {
 		} 
 		
 		pdogui.onFunction(thefunction);
-		pdodata.setFunctionNumber(randomfunction);
+		//pdodata.setFunctionNumber(randomfunction);
 		//Itt lekérem a lépéseket TODO még át kell tenni
 		//getFunction ();
 		simpleMode();
@@ -165,16 +165,19 @@ public class PDOEngine extends Engine {
 	
 	public void getFunction (){
 		ArrayList funcdetails;
+		System.out.println (pdodata.getFunctionNumber());
         switch (pdodata.getFunctionNumber()) {
-            case 1:  funcdetails = pdologic.dummyFunction();
+        	case 0:  funcdetails = pdologic.heapAverageSearcTimeFunction();
+        			 break;
+            case 1:  funcdetails = pdologic.heapAverageSearcTimeFunction();
                      break;
             case 2:  funcdetails = pdologic.dummyFunction();
                      break;
             case 3:  funcdetails = pdologic.dummyFunction();
                      break;
-            case 4:  funcdetails = pdologic.dummyFunction();
+            case 4:  funcdetails = pdologic.hashBucketCatalogSizeFunction();
                      break;
-            case 5:  funcdetails = pdologic.dummyFunction();
+            case 5:  funcdetails = pdologic.hashBucketCatalogSizeSmallerThenOperativMemoryFunction();
                      break;
             case 6:  funcdetails = pdologic.dummyFunction();
                      break;
@@ -202,11 +205,12 @@ public class PDOEngine extends Engine {
             		break;         
                 
             default: funcdetails = pdologic.dummyFunction();
+            System.out.println (" meghivodok");
                      break;
         }
 		
 		pdodata.setFunctionSteps(funcdetails);
-		System.out.println (" lépések feltöltve");
+		//System.out.println (" lépések feltöltve");
 		
 		
 	}
