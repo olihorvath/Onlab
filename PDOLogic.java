@@ -83,7 +83,7 @@ public ArrayList hashBucketCatalogSizeFunction(){
 		temp.add(Integer.toString(bucketnumber));
 		
 		temp.add("Számold ki a vödörkatalógus méretét!");
-		float bucketcatalogsize = bucketnumber * pdodata.getPointerSize();
+		float bucketcatalogsize = bucketnumber * (pdodata.getPointerSize() / 8.0f);
 		temp.add(Float.toString(bucketcatalogsize));
 
 		return temp;
@@ -107,7 +107,7 @@ public ArrayList hashBucketCatalogSizeSmallerThenOperativMemoryFunction(){
 	temp.add(Integer.toString(bucketnumber));
 	
 	temp.add("Számold ki a vödörkatalógus méretét!");
-	float bucketcatalogsize = bucketnumber * pdodata.getPointerSize();
+	float bucketcatalogsize = bucketnumber * (pdodata.getPointerSize() /8.0f);
 	temp.add(Float.toString(bucketcatalogsize));
 	
 	temp.add("Kisebb mint a vödörkatalógus mérete?");

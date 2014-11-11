@@ -25,8 +25,9 @@ public class PDOEngine extends Engine {
 		//System.out.println(randomfloat);
 		pdodata.setBlockSize(randomfloat);
 		
+		int recordnumtemp = myrandom.nextInt(9)+1;
 		
-		float randomrecordfloat =(float) myrandom.nextInt((int) randomfloat- 100)+100;
+		float randomrecordfloat =(float) myrandom.nextInt((int) randomfloat/recordnumtemp - 100)+100;
 		//System.out.println(randomrecordfloat);
 		pdodata.setRecordSize(randomrecordfloat);
 		
