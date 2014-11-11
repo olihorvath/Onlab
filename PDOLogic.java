@@ -119,25 +119,100 @@ public ArrayList hashBucketCatalogSizeSmallerThenOperativMemoryFunction(){
 }
 
 
-public ArrayList Function(){
+public ArrayList hashRecordAverageAccesTimeFunction(){
 	
 	ArrayList temp = new ArrayList ();
+	temp.add("Számold ki, hogy maximum hány blokk fér el egy vödörben!");
+	int bucketcap = (int) (pdodata.getBucketSize() / pdodata.getBlockSize());
+	
+	temp.add(Integer.toString(bucketcap));
+	temp.add("Számold ki egy rekord átlagos elérési idejét!");
+	float averageaccestime = (1+bucketcap) / 2* pdodata.getBlockOperationTime();
+
+	temp.add(Float.toString(averageaccestime));
+
+	return temp;
+}
+
+public ArrayList hashRecordMaxAccesTimeFunction(){
+	
+	ArrayList temp = new ArrayList ();
+	temp.add("Számold ki, hogy maximum hány blokk fér el egy vödörben!");
+	int bucketcap = (int) (pdodata.getBucketSize() / pdodata.getBlockSize());
+	
+	temp.add(Integer.toString(bucketcap));
+	temp.add("Számold ki egy rekord maximális elérési idejét!");
+	float averageaccestime = (bucketcap) * pdodata.getBlockOperationTime();
+
+	temp.add(Float.toString(averageaccestime));
+
+	return temp;
+}
+	
+public ArrayList sparseIndexStructureStorageFunction(){
+	
+	ArrayList temp = new ArrayList ();
+	
 	temp.add("Add meg a Blocking Factort!");
 	
 	int blockingfactor = blockingFactor();
 	temp.add(Integer.toString(blockingfactor));
 	
-	temp.add("Add meg az egy vödörbe betehetõ rekordok számát!");
-	int recordinbucket = recordNumberInBucket(blockingfactor);
-	temp.add(Integer.toString(recordinbucket));
+	temp.add("Számold ki a blokkok számát!");
+	int blocknumber = blockNumber (blockingfactor);
+	temp.add(Integer.toString(blocknumber));
 	
 	
+	temp.add("Számold ki az indexállomány blocking factorát!");
+	int indexblockingfactory = (int)   (pdodata.getBucketSize() / pdodata.getKeySize() + pdodata.getPointerSize()) ;
+			
+	temp.add(Integer.toString(indexblockingfactory));
 	
+	temp.add("Számold ki az indexállomány blokkjainak számát!");
+	int indexblocks =  (int) (blocknumber / indexblockingfactory);
+	temp.add(Integer.toString(indexblocks));
+
+	temp.add("Számold ki a teljes struktúra méretét!");	
+	
+	float totalblocksize = (blocknumber + indexblocks) * pdodata.getBlockSize();
+	temp.add(Float.toString(totalblocksize));
 
 	return temp;
 }
 
+public ArrayList sparseIndexOneRecordReadTimeFunction(){
 	
+	ArrayList temp = new ArrayList ();
+	
+	temp.add("Add meg a Blocking Factort!");
+	
+	int blockingfactor = blockingFactor();
+	temp.add(Integer.toString(blockingfactor));
+	
+	temp.add("Számold ki a blokkok számát!");
+	int blocknumber = blockNumber (blockingfactor);
+	temp.add(Integer.toString(blocknumber));
+	
+	
+	temp.add("Számold ki az indexállomány blocking factorát!");
+	int indexblockingfactory = (int)   (pdodata.getBucketSize() / pdodata.getKeySize() + pdodata.getPointerSize()) ;
+			
+	temp.add(Integer.toString(indexblockingfactory));
+	
+	temp.add("Számold ki az indexállomány blokkjainak számát!");
+	int indexblocks =  (int) (blocknumber / indexblockingfactory);
+	temp.add(Integer.toString(indexblocks));
+	temp.add("Számold az összesen beolvasott blokkok számát!");
+	
+	int totalblocknumber = indexblocks+1;
+	temp.add(Integer.toString(totalblocknumber));
+	temp.add("Számold a rekord elérési idejét!");
+	float readtime = totalblocknumber * pdodata.getBlockOperationTime();
+	temp.add(Float.toString(readtime));
+
+	return temp;
+}
+
 	
 	
 	int blockingFactor (){
