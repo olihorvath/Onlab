@@ -149,7 +149,9 @@ public class PDOEngine extends Engine {
 	}
 	
 	public void simpleResultsCheck(String result){
-		
+		getFunction();
+		ArrayList nowfunc = pdodata.getFunctionSteps();
+		check(result,(String) nowfunc.get(nowfunc.size()-1));
 	
 	}
 	
@@ -291,7 +293,7 @@ public class PDOEngine extends Engine {
 		if (a.equalsIgnoreCase(b))
 			JOptionPane.showMessageDialog(frame,"Helyes a megoldás.");
 		else 
-			JOptionPane.showMessageDialog(frame,"Helytelen a megoldás.");
+			JOptionPane.showMessageDialog(frame,"Helytelen a megoldás, a jó eredmény: " + b);
 		
 	}
 }
