@@ -22,35 +22,9 @@ public class PDOData extends Data {
 	private int functionnumber; // kiválasztott feladat száma
 	ArrayList functionsteps;
 	private int subfuncnumber = 1;  //hanyadik lépésnél járunk
-	private String [] functions = {
-			"1.1 Számold ki az átlagos keresési idõt!", 
-			"1.2 Számold ki a maximális keresési idõt!",
-			"1.3 Számold ki az x. rekord megtalálásának helyét!",  // TODO 
-			"1.4 Számold ki a x. rekord törlésének helyét!", // TODO
-			
-			"2.1 Számold ki a vödörkatalógus méretét!", 
-			"2.2 Belefér-e az operatív tárba a teljes vödörkatalógus?",
-			"2.3 Számold ki a rekordok átlagos elérésének az idejét!", 
-			"2.4 Számold ki a rekordok maximális elérésének az idejét!",
-			"2.5 Maximum x ms alatt elérjük-e bármelyik rekordot? ", // TODO 
-			
-			"3.1 Számold ki a teljes struktúra eltárolásához szükséges blokkok számát!",
-			"3.2 x. indexállomány blokkban van az általunk keresett rekord mutatója, mennyi idõ alatt érjük el ezt a blokkot? ", // TODO 
-			"3.3 Számold ki hogy mennyi ideig tarthat legfeljebb egy rekord kiolvasása!",
-			
-			"4.1 Sûrû indexelt szervezésre épülõ egyszintes ritka index segítségével szeretnénk állományt tárolni. Adj értelmes alsó becslést a szükséges blokkok számára.", 
-			"4.2 Sûrû indexelt szervezésre épülõ egyszintes ritka index segítségével szeretnénk állományt tárolni. Adj értelmes alsó becslést a szükséges tárterületre.",
-			
-			"5.1 Egy x szintes B* fában átlagosan hány blokkmûvelettel lehet elérni egy keresett elemet?",  //TODO
-			"5.2 Egy x szintes B* fában legfeljebb y idõ alatt el tudom érni bármelyik keresett elemet?",  //TODO
-			"5.3 A fenti paraméterekkel szeretnénk B* szervezéssel tárolni az állományunkat. Add meg a fa blocking factorát!", 
-			"5.4 A fenti paraméterekkel szeretnénk B* szervezéssel tárolni az állományunkat. Add meg a fa szintjeinek számát!"
-		
-			
-			
-			
-			
-	};
+	private float thex;
+	private float they;
+	
 	
 	
 	
@@ -145,6 +119,24 @@ public class PDOData extends Data {
 		return freememory;
 	}
 	
+	public void setX (float x){
+		thex = x;
+		//System.out.println (thex);
+	}
+	
+	public float getX (){
+		return thex;
+	}
+	
+	public void setY (float y){
+		they = y;
+		//System.out.println (they);
+	}
+	
+	public float getY (){
+		return they;
+	}
+	
 	public void setSimpleMode (){
 		simplemode = true;
 		fullmode = false;
@@ -166,6 +158,32 @@ public class PDOData extends Data {
 	}
 	
 	String getFunction (int index){	
+		String [] functions = {
+				"1.1 Számold ki az átlagos keresési idõt!", 
+				"1.2 Számold ki a maximális keresési idõt!",
+				"1.3 Számold ki a(z) "+(int)thex+ ". rekord megtalálásának helyét!",  
+				"1.4 Számold ki a(z) "+(int)thex+ ". rekord törlésének helyét!", 
+				
+				"2.1 Számold ki a vödörkatalógus méretét!", 
+				"2.2 Belefér-e az operatív tárba a teljes vödörkatalógus?",
+				"2.3 Számold ki a rekordok átlagos elérésének az idejét!", 
+				"2.4 Számold ki a rekordok maximális elérésének az idejét!",
+				"2.5 Maximum "+thex+"ms alatt elérjük-e bármelyik rekordot? ", 
+				
+				"3.1 Számold ki a teljes struktúra eltárolásához szükséges blokkok számát!",
+				"3.2 "+(int)thex+ ". indexállomány blokkban van az általunk keresett rekord mutatója, mennyi idõ alatt érjük el ezt a blokkot? ", 
+				"3.3 Számold ki hogy mennyi ideig tarthat legfeljebb egy rekord kiolvasása!",
+				
+				"4.1 Sûrû indexelt szervezésre épülõ egyszintes ritka index segítségével szeretnénk állományt tárolni. Adj értelmes alsó becslést a szükséges blokkok számára.", 
+				"4.2 Sûrû indexelt szervezésre épülõ egyszintes ritka index segítségével szeretnénk állományt tárolni. Adj értelmes alsó becslést a szükséges tárterületre.",
+				
+				"5.1 Egy "+(int)thex+ " szintes B* fában átlagosan hány blokkmûvelettel lehet elérni egy keresett elemet?", 
+				"5.2 Egy "+(int)thex+ " szintes B* fában legfeljebb "+they+ " ms alatt el tudom érni bármelyik keresett elemet?", 
+				"5.3 A fenti paraméterekkel szeretnénk B* szervezéssel tárolni az állományunkat. Add meg a fa blocking factorát!", 
+				"5.4 A fenti paraméterekkel szeretnénk B* szervezéssel tárolni az állományunkat. Add meg a fa szintjeinek számát!"
+			
+		};	
+		
 	setFunctionNumber(index);
 	return functions[index];
 	}

@@ -87,9 +87,9 @@ ItemListener {
 	public void actionPerformed(ActionEvent arg0) {
 		String com = ((JMenuItem) arg0.getSource()).getText();
 		if (com.equals("Mentés")) {
-			Test.saveMethod();
+			//Test.saveMethod();
 		} else if (com.equals("Betöltés")) {
-			Test.loadMethod();
+			//Test.loadMethod();
 			
 			
 		} 

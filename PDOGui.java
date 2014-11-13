@@ -243,7 +243,9 @@ ItemListener {
 		fullresultbutton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
             {
-				pdoengine.nextStep();
+				if (!fullresultfield.getText().equals("")){
+				pdoengine.nextStep(fullresultfield.getText());
+				}
             }
 			
 		});

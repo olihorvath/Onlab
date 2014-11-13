@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+
 
 public class PDOEngine extends Engine {
 	Serialization pdoser;
@@ -81,12 +84,12 @@ public class PDOEngine extends Engine {
 
 	//mentés metódus
 	public void saveMethod(){
-	pdoser.saveMethod();	
+	pdoser.saveMethod(pdodata);	
 		
 	}
 	//betöltés metódus
 	public void loadMethod(){
-	pdoser.loadMethod();	
+	pdodata = pdoser.loadMethod();	
 	}
 	
 	public void newFunction () {
@@ -96,43 +99,43 @@ public class PDOEngine extends Engine {
 		int randomfunction = 0;
 		if (newfunc[0] == -1 && newfunc[1] == -1 && newfunc[2] == -1 ){
 			randomfunction = newrandom.nextInt(18);	
-			thefunction = pdodata.getFunction(randomfunction);
+			thefunction = functionEngine(randomfunction);
 			
 		} else if (newfunc[1] == 0){ 
 			if (newfunc[0] == 0){
 				
-				thefunction = pdodata.getFunction(newfunc[2]);
+				thefunction = functionEngine(newfunc[2]);
 			} else if (newfunc[0] == 1){
 				//System.out.println(newfunc[2]+4);
-				thefunction = pdodata.getFunction(newfunc[2]+4);
+				thefunction = functionEngine(newfunc[2]+4);
 			} else if (newfunc[0] == 2){
 				
-				thefunction = pdodata.getFunction(newfunc[2]+9);
+				thefunction = functionEngine(newfunc[2]+9);
 			}else if (newfunc[0] == 3){
 				
-				thefunction = pdodata.getFunction(newfunc[2]+12);
+				thefunction = functionEngine(newfunc[2]+12);
 			}else if (newfunc[0] == 4){
 				
-				thefunction = pdodata.getFunction(newfunc[2]+14);
+				thefunction = functionEngine(newfunc[2]+14);
 			}
 			
 			
 		} else if (newfunc[1] == 1){ // ha feladaton belül kell random keresni
 			if (newfunc[0] == 0){
 				randomfunction = newrandom.nextInt(4);
-				thefunction = pdodata.getFunction(randomfunction);
+				thefunction = functionEngine(randomfunction);
 			} else if (newfunc[0] == 1){
 				randomfunction = newrandom.nextInt(5)+4;
-				thefunction = pdodata.getFunction(randomfunction);
+				thefunction = functionEngine(randomfunction);
 			} else if (newfunc[0] == 2){
 				randomfunction = newrandom.nextInt(3)+9;
-				thefunction = pdodata.getFunction(randomfunction);
+				thefunction = functionEngine(randomfunction);
 			}else if (newfunc[0] == 3){
 				randomfunction = newrandom.nextInt(2)+12;
-				thefunction = pdodata.getFunction(randomfunction);
+				thefunction = functionEngine(randomfunction);
 			}else if (newfunc[0] == 4){
 				randomfunction = newrandom.nextInt(4)+14;
-				thefunction = pdodata.getFunction(randomfunction);
+				thefunction = functionEngine(randomfunction);
 			}
 			
 			
@@ -172,9 +175,9 @@ public class PDOEngine extends Engine {
         			 break;
             case 1:  funcdetails = pdologic.heapAverageSearcTimeFunction();
                      break;
-            case 2:  funcdetails = pdologic.dummyFunction();
+            case 2:  funcdetails = pdologic.heapxSearchTimeFunction();
                      break;
-            case 3:  funcdetails = pdologic.dummyFunction();
+            case 3:  funcdetails = pdologic.heapxDeleteTimeFunction();
                      break;
             case 4:  funcdetails = pdologic.hashBucketCatalogSizeFunction();
                      break;
@@ -184,25 +187,25 @@ public class PDOEngine extends Engine {
                      break;
             case 7:  funcdetails = pdologic.hashRecordMaxAccesTimeFunction();
                      break;
-            case 8:  funcdetails = pdologic.dummyFunction();
+            case 8:  funcdetails = pdologic.hashRecordsearchTimesmallerThanXFunction();
                      break;
             case 9:  funcdetails = pdologic.sparseIndexStructureStorageFunction();
                      break;
-            case 10: funcdetails = pdologic.dummyFunction();
+            case 10: funcdetails = pdologic.sparseIndexOneBlockSearchTimeFunction();
                      break;
             case 11: funcdetails = pdologic.sparseIndexOneRecordReadTimeFunction();
                      break;
-            case 12: funcdetails = pdologic.dummyFunction();
+            case 12: funcdetails = pdologic.sparseandfrequentIndexBlockNumberFunction();
                      break;
-            case 13: funcdetails = pdologic.dummyFunction();
+            case 13: funcdetails = pdologic.sparseandfrequentIndexMemorySizeFunction();
             		break;
-            case 14: funcdetails = pdologic.dummyFunction();
+            case 14: funcdetails = pdologic.bstarAccessTimeFunction();
             		break;
-            case 15: funcdetails = pdologic.dummyFunction();
+            case 15: funcdetails = pdologic.bstarAccessTimeSmallerThenYFunction();
             		break;
-            case 16: funcdetails = pdologic.dummyFunction();
+            case 16: funcdetails = pdologic.bstarBlockingFactorFunction();
             		break;
-            case 17: funcdetails = pdologic.dummyFunction();
+            case 17: funcdetails = pdologic.bstarHeightOfTreeFunction();
             		break;         
                 
             default: funcdetails = pdologic.dummyFunction();
@@ -216,9 +219,11 @@ public class PDOEngine extends Engine {
 		
 	}
 	
-	public void nextStep(){
+	public void nextStep(String results){
 		String [] nowfunc = pdodata.getNowFunction();
 		String [] nextfunc = pdodata.getNextFunction();
+		check (results, nowfunc[1]);
+		
 		if (nextfunc[0].equals("end") && nextfunc[1].equals("end")) {
 			pdogui.fullSolutionAddRow(nowfunc[0], nowfunc[1]);
 			pdogui.fullSolutionnext("Vége");
@@ -227,6 +232,66 @@ public class PDOEngine extends Engine {
 		
 		pdogui.fullSolutionAddRow(nowfunc[0], nowfunc[1]);
 		pdogui.fullSolutionnext(nextfunc[0]);
+		
+	}
+	
+	
+	public String functionEngine (int ind){
+		String ret = null;
+		Random xrandom = new Random();
+		float xx;
+		switch (ind){
+		
+		case 2:
+			 pdodata.setX((float) xrandom.nextInt((int)pdodata.getRecordNumber()));
+			break;
+		
+		case 3:  
+			pdodata.setX((float) xrandom.nextInt((int)pdodata.getRecordNumber()));
+			 break;
+		
+		case 8:
+			pdodata.setX((float) xrandom.nextInt(200));
+			 break;
+		
+		case 10:
+			pdodata.setX((float) xrandom.nextInt(1000));
+			 break;
+		
+		case 14:  
+			pdodata.setX((float) xrandom.nextInt(1000));
+			 break;
+		
+		case 15: 
+			pdodata.setX((float) xrandom.nextInt(1000));
+			pdodata.setY((float) xrandom.nextInt(1000));
+			
+			//System.out.println (pdodata.getX());
+			 break;
+			 
+		 default:
+			
+             break;
+		
+		}
+		
+	//	try {
+		//	Thread.sleep(100);
+	//	} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+	//		e.printStackTrace();
+	//	}
+		 ret = pdodata.getFunction(ind);
+		return ret;
+	}
+	
+	public void check (String a, String b){
+		
+		JFrame frame = new JFrame();
+		if (a.equalsIgnoreCase(b))
+			JOptionPane.showMessageDialog(frame,"Helyes a megoldás.");
+		else 
+			JOptionPane.showMessageDialog(frame,"Helytelen a megoldás.");
 		
 	}
 }
