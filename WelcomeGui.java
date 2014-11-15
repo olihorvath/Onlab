@@ -15,6 +15,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
+import tablazatosmodszer.SingletonTableMethodGui;
 
 public class WelcomeGui extends JFrame implements ActionListener,
 ItemListener {
@@ -34,17 +35,17 @@ ItemListener {
 
 	private void initialize() throws IOException {
 		//felveszem a WelcomeGui reszeit
-		setTitle("Adatb·zis feladat gyakorlÛprogram");
+		setTitle("Adatb√°zis feladat gyakorl√≥program");
 		JPanel wgPanel = new JPanel();
 		JMenuBar wgMenuBar = new JMenuBar();
 		JMenu wgMenu = new JMenu("Menu");
-		JMenuItem wgMenuItemSave = new JMenuItem ("MentÈs");
-		JMenuItem wgMenuItemLoad = new JMenuItem ("BetˆltÈs");
+		JMenuItem wgMenuItemSave = new JMenuItem ("Ment√©s");
+		JMenuItem wgMenuItemLoad = new JMenuItem ("Bet√∂lt√©s");
 		wgMenuItemSave.addActionListener(this);
 		wgMenuItemLoad.addActionListener(this);
 		ImageIcon dblogo = new ImageIcon("logo.png");
-		JButton nfButton = new JButton ("Norm·lform·kra bont·s", dblogo);
-		JButton fsButton = new JButton ("Fizikai adatszervezÈs", dblogo);
+		JButton tmButton = new JButton ("T√°bl√°zatos m√≥dszer", dblogo);
+		JButton fsButton = new JButton ("Fizikai adatszervez√©s", dblogo);
 		
 		// Buttonok beallitasa
 		nfButton.setPreferredSize(new Dimension (270,200));
@@ -64,6 +65,16 @@ ItemListener {
                 
             }
 			
+		});
+		tmButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e)
+            {
+				if(!SingletonTableMethodGui.windowAlreadyExists()){
+					SingletonTableMethodGui tmgui;
+					tmgui = new SingletonTableMethodGui();
+					tmgui.setVisible(true);
+				}
+            }
 		});
 		
 		//a komponenseket itt rakom ossze
@@ -86,9 +97,9 @@ ItemListener {
 	
 	public void actionPerformed(ActionEvent arg0) {
 		String com = ((JMenuItem) arg0.getSource()).getText();
-		if (com.equals("MentÈs")) {
+		if (com.equals("Ment√©s")) {
 			//Test.saveMethod();
-		} else if (com.equals("BetˆltÈs")) {
+		} else if (com.equals("Bet√∂lt√©s")) {
 			//Test.loadMethod();
 			
 			
