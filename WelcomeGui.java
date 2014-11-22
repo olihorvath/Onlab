@@ -48,7 +48,7 @@ ItemListener {
 		JButton fsButton = new JButton ("Fizikai adatszervezés", dblogo);
 		
 		// Buttonok beallitasa
-		nfButton.setPreferredSize(new Dimension (270,200));
+		tmButton.setPreferredSize(new Dimension (270,200));
 		fsButton.setPreferredSize(new Dimension (270,200));
 		fsButton.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e)
@@ -79,7 +79,7 @@ ItemListener {
 		
 		//a komponenseket itt rakom ossze
 		wgPanel.add(nfButton);
-		wgPanel.add(fsButton);
+		wgPanel.add(tmButton);
 		
 		wgMenu.add(wgMenuItemSave);
 		wgMenu.add(wgMenuItemLoad);
