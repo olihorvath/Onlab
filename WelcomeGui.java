@@ -78,8 +78,8 @@ ItemListener {
 		});
 		
 		//a komponenseket itt rakom ossze
-		wgPanel.add(nfButton);
 		wgPanel.add(tmButton);
+		wgPanel.add(fsButton);
 		
 		wgMenu.add(wgMenuItemSave);
 		wgMenu.add(wgMenuItemLoad);
